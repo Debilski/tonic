@@ -24,6 +24,7 @@ type Config struct {
 	Port       uint16
 	CookieName string
 	DBPath     string
+	BaseURL    string
 }
 
 // Tonic represents a full service which contains a web server, a database for
@@ -61,7 +62,7 @@ func NewService(webform form.Form, preAction worker.PreAction, postAction worker
 
 	// Web server
 	srv.log.Print("Initialising web service")
-	srv.web = web.New(config.Port)
+	srv.web = web.New(config.Port, config.BaseURL)
 	// Share logger with web service
 	srv.web.SetLogger(srv.log)
 

@@ -6,7 +6,7 @@ const Form = `
 			<div class="ginform">
 				<div class="ui middle very relaxed page grid">
 					<div class="column">
-						<form class="ui form" action="/" method="post">
+						<form class="ui form" action="{{ .BaseURL }}/" method="post">
 							<input type="hidden" name="_csrf" value="">
 							<h3 class="ui top attached header">
 								{{.form.Name}}

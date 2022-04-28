@@ -32,10 +32,12 @@ func (ws *Server) ErrorResponse(w http.ResponseWriter, status int, message strin
 		StatusCode int
 		StatusText string
 		Message    string
+		BaseURL    string
 	}{
 		status,
 		http.StatusText(status),
 		message,
+		ws.BaseURL,
 	}
 	if err := tmpl.Execute(w, &errinfo); err != nil {
 		ws.log.Printf("Error rendering fail page: %v", err)
@@ -47,14 +49,17 @@ type Server struct {
 	*http.Server
 	Router *mux.Router
 	log    *log.Logger
+	BaseURL	string
 }
 
 // New returns a web Server with an initialised mux.Router and http.Server.
-func New(port uint16) *Server {
+func New(port uint16, BaseURL string) *Server {
 	srv := new(Server)
 	// Set default logger.
 	// Can be later replaced using the SetLogger() method.
 	srv.log = log.New(os.Stderr, "", log.LstdFlags)
+	// Set default BaseURL
+	srv.BaseURL = BaseURL
 	srv.Router = new(mux.Router)
 	httpsrv := new(http.Server)
 	httpsrv.Handler = srv.Router
@@ -73,6 +78,14 @@ func New(port uint16) *Server {
 func (ws *Server) SetLogger(l *log.Logger) {
 	ws.log = l
 }
+
+// SetBaseURL sets the base url instance for the web service.  If unset the base URL
+// is taken to be the empty string
+func (ws *Server) SetBaseURL(baseURL string) {
+	ws.log.Printf("Setting BaseURL: %s", baseURL)
+	ws.BaseURL = baseURL
+}
+
 
 // Start starts the embedded web server's ListenAndServe method in a goroutine
 // and returns.  This method does not block. Use WaitForInterrupt() or

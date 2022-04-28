@@ -5,8 +5,8 @@
     "username": "testbot",
     "password": "testbot"
   },
-
   "templaterepo": "G-Node/research_repo_template_nosub",
- "cookiename": "utonic-labproject",
-  "dbpath": "./labproject.db"
+  "cookiename": "utonic-labproject",
+  "dbpath": "./labproject.db",
+  "baseurl": ""
 }

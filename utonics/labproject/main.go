@@ -444,6 +444,12 @@ func readConfig(filename string) *labProjectConfig {
 		config.DBPath = "./labproject.db"
 		log.Printf("[config] Setting default dbpath: %s", config.DBPath)
 	}
+	if config.BaseURL == "" {
+		config.BaseURL = ""
+		log.Printf("[config] Setting default base URL: %s", config.BaseURL)
+	}
+
+
 
 	// Warn about unset values with no defaults
 	unset := make([]string, 0, 5)

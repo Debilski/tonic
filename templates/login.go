@@ -8,7 +8,7 @@ const Login = `
 			<div class="user signin">
 				<div class="ui middle very relaxed page grid">
 					<div class="column">
-						<form class="ui form" action="/login" method="post">
+						<form class="ui form" action="{{ .BaseURL }}/login" method="post">
 							<input type="hidden" name="_csrf" value="">
 							<h3 class="ui top attached header">
 								Sign In using your GIN credentials

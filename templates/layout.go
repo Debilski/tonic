@@ -8,14 +8,15 @@ var Layout = `
 {{ define "layout" }}
 <html>
 	<!DOCTYPE html>
-	<head data-suburl="">
-		<link rel="shortcut icon" href="https://gindata.biologie.hu-berlin.de/img/favicon.png" />
-		<link rel="stylesheet" href="/assets/font-awesome-4.6.3/css/font-awesome.min.css">
-		<link rel="stylesheet" href="/assets/octicons-4.3.0/octicons.min.css">
-		<link rel="stylesheet" href="/assets/semantic-2.3.1.min.css">
-		<link rel="stylesheet" href="/assets/gogs.css">
-		<link rel="stylesheet" href="/assets/custom.css">
+	<head data-suburl="{{ .BaseURL }}">
+		<link rel="shortcut icon" href="{{ .BaseURL }}/assets/favicon.png" />
+		<link rel="stylesheet" href="{{ .BaseURL }}/assets/font-awesome-4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ .BaseURL }}/assets/octicons-4.3.0/octicons.min.css">
+		<link rel="stylesheet" href="{{ .BaseURL }}/assets/semantic-2.3.1.min.css">
+		<link rel="stylesheet" href="{{ .BaseURL }}/assets/gogs.css">
+		<link rel="stylesheet" href="{{ .BaseURL }}/assets/custom.css">
 		<title>TONIC Project administration</title>
+		<title>Project creator</title>
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:site" content="@gnode" />
 		<meta name="twitter:title" content="GIN Valid"/>
@@ -32,8 +33,8 @@ var Layout = `
 								<a class="item brand" href="https://gindata.biologie.hu-berlin.de">
 									<img class="ui mini image" src="https://gindata.biologie.hu-berlin.de/img/favicon.png">
 								</a>
-								<a class="item" href="/">New</a>
-								<a class="item" href="/log">Jobs</a>
+								<a class="item" href="{{ .BaseURL }}/">New</a>
+								<a class="item" href="{{ .BaseURL }}/log">Jobs</a>
 							</div>
 						</div>
 					</div>
