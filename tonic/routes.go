@@ -29,14 +29,14 @@ func (srv *Tonic) reqLoginHandler(handler authedHandler) func(w http.ResponseWri
 	return func(w http.ResponseWriter, r *http.Request) {
 		cookie, err := r.Cookie(srv.config.CookieName)
 		if err != nil || cookie.Value == "" {
-			http.Redirect(w, r, srv.web.BaseURL + "/login", http.StatusFound)
+			http.Redirect(w, r, srv.web.BaseURL+"/login", http.StatusFound)
 			return
 		}
 
 		sessid := cookie.Value
 		session, err := srv.db.GetSession(sessid)
 		if err != nil {
-			http.Redirect(w, r, srv.web.BaseURL + "/login", http.StatusFound)
+			http.Redirect(w, r, srv.web.BaseURL+"/login", http.StatusFound)
 			return
 		}
 
@@ -77,7 +77,7 @@ func (srv *Tonic) renderLoginPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	type TemplateData struct {
-		BaseURL	string
+		BaseURL string
 	}
 	tmpl.Execute(w, TemplateData{BaseURL: srv.web.BaseURL})
 }
@@ -142,7 +142,7 @@ func (srv *Tonic) userLoginPost(w http.ResponseWriter, r *http.Request) {
 
 	http.SetCookie(w, &cookie)
 	// Redirect to form
-	http.Redirect(w, r, srv.web.BaseURL + "/", http.StatusFound)
+	http.Redirect(w, r, srv.web.BaseURL+"/", http.StatusFound)
 }
 
 func (srv *Tonic) renderForm(w http.ResponseWriter, r *http.Request, sess *db.Session) {
@@ -260,7 +260,7 @@ func (srv *Tonic) renderLog(w http.ResponseWriter, r *http.Request, sess *db.Ses
 		return
 	}
 	type TemplateData struct {
-		Jobs []db.Job
+		Jobs    []db.Job
 		BaseURL string
 	}
 	if err := tmpl.Execute(w, TemplateData{Jobs: joblog, BaseURL: srv.web.BaseURL}); err != nil {
@@ -289,7 +289,7 @@ func (srv *Tonic) processForm(w http.ResponseWriter, r *http.Request, sess *db.S
 	srv.worker.Enqueue(worker.NewUserJob(client, label, jobValues))
 
 	// redirect to job log
-	http.Redirect(w, r, srv.web.BaseURL + "/log", http.StatusSeeOther)
+	http.Redirect(w, r, srv.web.BaseURL+"/log", http.StatusSeeOther)
 }
 
 // hashValues returns a sha1 hash of a ValueMap that can be used to uniquely

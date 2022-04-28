@@ -47,9 +47,9 @@ func (ws *Server) ErrorResponse(w http.ResponseWriter, status int, message strin
 // Server implements the web server for the Tonic service.
 type Server struct {
 	*http.Server
-	Router *mux.Router
-	log    *log.Logger
-	BaseURL	string
+	Router  *mux.Router
+	log     *log.Logger
+	BaseURL string
 }
 
 // New returns a web Server with an initialised mux.Router and http.Server.
@@ -85,7 +85,6 @@ func (ws *Server) SetBaseURL(baseURL string) {
 	ws.log.Printf("Setting BaseURL: %s", baseURL)
 	ws.BaseURL = baseURL
 }
-
 
 // Start starts the embedded web server's ListenAndServe method in a goroutine
 // and returns.  This method does not block. Use WaitForInterrupt() or
